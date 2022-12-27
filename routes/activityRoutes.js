@@ -4,6 +4,7 @@ const activityController = require('../controllers/activityController');
 
 
 
-router.post('/postData', (req, res) => {
-    
-})
+router.post('/postData', activityController.postActivity);
+router.get('/getAll', activityController.getActivity);
+
+module.exports = router;
