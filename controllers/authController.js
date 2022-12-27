@@ -57,7 +57,7 @@ exports.postAuth = (req, res, next) => {
             
             otp = hashSync(otp, otp_salt);
             console.log(otp)
-            db.execute('INSERT INTO users(name, email, password, fcmToken, username, isVerified, isPremium, points, secret) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)', [name, email_address, password, fcmToken, req.body.username, req.body.isVerified, req.body.isPremium, req.body.points, otp]).then(([rows, fieldData]) => {
+            db.execute('INSERT INTO users(email, password, fcmToken, isVerified, secret) VALUES (?, ?, ?, ?, ?)', [email_address, password, fcmToken, req.body.isVerified, otp]).then(([rows, fieldData]) => {
                  
                 res.status(200).json({
                     success: true,
